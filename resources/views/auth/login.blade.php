@@ -18,7 +18,7 @@
                
                 @endif
                 <div>
-                    <div class="@error('email') border-red-500 @enderror bg-white mt-8 rounded-lg border border-gray-200 shadow-md px-2 pb-1 pt-[2px] w-full">
+                    <div class="@error('email') border-red-500 @enderror bg-white mt-5 rounded-lg border border-gray-200 shadow-md px-2 pb-1 pt-[2px] w-full">
                         <label for="email" class="text-sm text-gray-400">E-mail</label>
                         <input
                             id="email"
@@ -45,6 +45,11 @@
                     @error('password')
                         <p class="font-semibold mt-1 text-red-400 text-center">{{ $message }}</p>
                     @enderror
+                </div>
+
+                <div class="mt-5 flex items-center">
+                    <input type="checkbox" name="remember">
+                    <label class="ml-2">keep session open</label>
                 </div>
                 <button 
                     type="submit"

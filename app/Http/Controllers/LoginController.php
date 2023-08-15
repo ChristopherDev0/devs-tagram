@@ -20,7 +20,7 @@ class LoginController extends Controller
         ]);
 
         //comporvamos que el usuario este autenticado (retorna true-false)
-        if(!auth()->attempt($request->only('email', 'password'))){
+        if(!auth()->attempt($request->only('email', 'password'), $request->remember)){
             //redireccionamos y ponenmos un mensaje en una sesion
             return back()->with('message', 'Data entered is incorrect');
         }

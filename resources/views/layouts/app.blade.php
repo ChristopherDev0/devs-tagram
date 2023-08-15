@@ -12,14 +12,31 @@
             <div class="py-5 border-b bg-white shadow-lg bg-opacity-90 backdrop-filter backdrop-blur-sm">
                 <div class="flex justify-between items-center md:max-w-3xl lg:max-w-6xl mx-auto">
                     <h1 class="font-bold text-2xl">DevsTragram &lt;/&gt;</h1>
-                    <nav class="flex gap-5 items-center">
-                        <a 
-                        class="inline-flex items-center hover:opacity-[0.7] justify-center font-semibold transition-all text-md py-1 rounded-lg cursor-pointer bg-gradient-to-tr from-gray-200 to-gray-100 shadow-lg shadow-gray-500/20 px-5" 
-                        href="#">Loging</a>
-                        <a                     
-                            class="inline-flex items-center hover:opacity-[0.7] justify-center font-semibold transition-all text-md py-1 rounded-lg cursor-pointer bg-gradient-to-tr from-purple-600 to-purple-400 text-white shadow-lg shadow-purple-500/20 px-5" 
-                            href="{{ route('register') }}">Register</a>
-                    </nav>
+                     @auth
+                        <nav class="flex gap-5 items-center">
+                            <a class="font-bold text-gray-400">
+                                Hola <span class="text-gray-600"> {{ auth()->user()->username }} </span>
+                            </a>
+                            <form action=" {{ route('logout') }} " method="POST">
+                                @csrf {{-- directiva de proteccion --}}
+                                <button type="submit" class="inline-flex items-center hover:opacity-[0.7] justify-center font-semibold transition-all text-md py-1 rounded-lg cursor-pointer bg-gradient-to-tr from-red-600 to-red-400 text-white shadow-lg shadow-red-500/20 px-5">
+                                    Sign off
+                                </button>
+                            </form>
+                        </nav>
+                     @endauth
+
+                     @guest
+                        <nav class="flex gap-5 items-center">
+                            <a 
+                            class="inline-flex items-center hover:opacity-[0.7] justify-center font-semibold transition-all text-md py-1 rounded-lg cursor-pointer bg-gradient-to-tr from-gray-200 to-gray-100 shadow-lg shadow-gray-500/20 px-5" 
+                            href=" {{ route('login') }} ">Login</a>
+                            <a                     
+                                class="inline-flex items-center hover:opacity-[0.7] justify-center font-semibold transition-all text-md py-1 rounded-lg cursor-pointer bg-gradient-to-tr from-purple-600 to-purple-400 text-white shadow-lg shadow-purple-500/20 px-5" 
+                                href="{{ route('register') }}">Register</a>
+                        </nav>
+                     @endguest
+
                 </div>
            </div>
         </header>
